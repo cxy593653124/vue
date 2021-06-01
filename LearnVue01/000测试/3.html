@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+  <div id ="app">
+    <h2>子1先传父，父再传子2，类似上面搜索，下面出结果</h2>
+    <cpn1 @search="getbooks"></cpn1>
+    <cpn2 :cbooks="books"></cpn2>
+  </div>
+
+  <template id="cpn1">
+    <div>
+      <input type="text" placeholder="请输入要添加的商品名称" v-model="content">
+      <button @click="csearch">添加</button>
+    </div>
+  </template>
+
+
+  <template id="cpn2">
+    <ol>
+      <li v-for="item in cbooks">{{item}}</li>
+    </ol>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+
+  const cpn1 = {
+    template:'#cpn1',
+    data(){
+      return {
+        content:""
+      }
+    },
+    methods:{
+      csearch(){
+        if(this.content){
+          this.$emit('search',this.content)
+          console.log("提交成功",this.content)
+        }
+        this.content = ""
+      }
+    }
+  }
+
+  const cpn2 = {
+    template:'#cpn2',
+    props:{
+      cbooks:{
+        type:Array
+      }
+    },
+    data(){
+      return {}
+    }
+  }
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message:"你好啊",
+      books:['海王']
+    },
+    components:{
+      cpn1,
+      cpn2
+    },
+    methods:{
+      getbooks(book){
+        this.books.unshift(book)
+      }
+    }
+  });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--父组件模板-->
+<div id="app">
+  <cpn @itemclick="cpnClick"></cpn>
+</div>
+
+<!--子组件模板-->
+<template id="cpn">
+  <div>
+    <button v-for="item in categorys"
+            @click="btnClick(item)">{{item.name}}</button>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  //子组件
+  const cpn = {
+    template:'#cpn',
+    data:function(){
+      return {
+        categorys:[
+          {id:'aaa',name:'热门推荐'},
+          {id:'bbb',name:'手机数码'},
+          {id:'ccc',name:'家用家电'},
+          {id:'ddd',name:'电脑办公'}
+        ]
+      }
+    },
+    methods:{
+      btnClick:function (item) {
+        // console.log(item)
+        this.$emit('itemclick',item)//发射自定义事件(a,b)
+      }
+
+    }
+  }
+
+  //父组件
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'哈哈哈'
+    },
+    components:{
+      cpn
+    },
+    methods:{
+      cpnClick:function (item) {
+        console.log(item.name)
+      }
+    }
+  })
+  //v-bind:后的变量不能有驼峰
+  //cInfo可以谢为v-bind:c-info
+  //所以子组件定义变量最好不要有驼峰
+</script>
+
+</body>
+</html>

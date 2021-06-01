@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+  用户名<input type="text" v-model="message">
+  <br>
+  密   码<input type="password" v-model="password">
+  <h2>{{message}}</h2>
+  <h2>{{password}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+const app = new Vue({
+  el:'#app',
+  data:{
+    message:'',
+    password:''
+  }
+})
+//实现双向绑定
+</script>
+
+</body>
+</html>

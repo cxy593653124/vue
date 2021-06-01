@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+  <!--<input type="text" v-model="message">-->
+
+
+  <!--<input type="text" :value="message" v-on:input="valueChange">-->
+  <!--监听input的输入-->
+
+  <input type="text" :value="message" @input="message = $event.target.value">
+
+  {{message}}
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    methods:{
+      valueChange:function (event) {
+        this.message = event.target.value;
+      }
+    }
+  })
+  //实现双向绑定
+</script>
+
+</body>
+</html>

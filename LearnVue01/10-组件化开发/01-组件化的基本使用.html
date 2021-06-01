@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+//ES6
+
+
+
+//1.创建组件构造器对象
+const cpnC = Vue.extend({
+  template:`<div>
+    <h2>我是标题</h2>
+    <p>我是内容，12131231231</p>
+    <p>我是内容，15615615</p>
+  </div>`
+})
+
+//2.注册组件
+Vue.component('my-cpn',cpnC);
+
+
+const app = new Vue({
+  el:'#app',
+  data:{
+    message:'你好啊'
+  }
+})
+//组件的标签名不能使用驼峰标识，需要将驼峰中的大写字母转为'-'+小写
+</script>
+</body>
+</html>

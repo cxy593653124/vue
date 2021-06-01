@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+  <button>按钮1</button>
+  <button>按钮2</button>
+  <button>按钮3</button>
+  <button>按钮4</button>
+  <button>按钮5</button>
+
+
+  <script>
+    //ES5之前因为if和for没有块级作用域的概念，所以很多时候，需要借助于function的作用域来解决变量的问题
+    //ES6中let会形成作用域
+
+    //1.变量作用域：变量在什么范围内使用
+    // {
+    //   var name = 'why'
+    //   console.log(naem)
+    // }
+
+    //2.没有块级作用域引起的问题:if的块级
+    // var func;
+    // if(true){
+    //   var name = 'why'
+    //   fuc = function(){
+    //     console.log(name)
+    //   }
+    //   fuc()
+    // }
+    // name='kobe'
+    // fuc();
+
+    //下方形成作用域
+    // var name='why'
+    // function abc(name) {
+    //   console.log(name)
+    // }
+    // name = 'kobe'
+    // abc('aaa')
+
+
+    //3.没有块级作用域引起的问题:for的块级
+    // var btns = document.getElementsByTagName('button')
+    // for(var i=0;i<btns.length;i++){
+    //   (function (num) {//闭包的用法，形成一个单独的作用域
+    //     btns[i].addEventListener('click',function () {
+    //       console.log('第'+ num +'个按钮被点击')
+    //     })
+    //   })(i)
+    // }
+
+    //ES6   lei会形成作用域，第一次执行后，第二次循环不会修改第一次执行时的i，而上面的var循环中，之后的循环会覆盖之前循环中的i
+    const btns = document.getElementsByTagName('button');
+    for(let i=0;i<btns.length;i++){
+      btns[i].addEventListener('click',function () {
+        console.log('第'+ i +'个按钮被点击')
+      })
+    }
+
+
+  </script>
+
+</body>
+</html>

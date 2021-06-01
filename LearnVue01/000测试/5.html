@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>title</title>
+</head>
+
+<body>
+	<div id ="app">
+		<h2>实现页面缓存的list</h2>
+		<cpn></cpn>
+	</div>
+
+
+	<template id="cpn">
+		<div>
+			<input type="text" v-model="movie">
+			<button @click="btnClick">按钮</button>
+			<ol>
+				<li v-for="item in movies">{{item}}</li>
+			</ol>
+		</div>
+	</template>
+
+
+	<script src="../js/vue.js"></script>
+	<script>
+
+	const cpn = {
+		template:"#cpn",
+		data(){
+			return {
+				movies:JSON.parse(window.localStorage.getItem("movies")||'[]'),
+				movie:""
+			}
+		},methods:{
+			btnClick(){
+				this.movies.push(this.movie);
+				this.movie = ""
+				alert("添加成功")
+			}
+		},
+		watch:{
+			movies:{
+				handler:function(items){
+					window.localStorage.setItem("movies",JSON.stringify(this.movies));
+				}
+			}
+		},
+	}
+
+	var app = new Vue({
+		el: '#app',
+		components:{
+			cpn
+		}
+	});
+	</script>
+</body>
+
+</html>

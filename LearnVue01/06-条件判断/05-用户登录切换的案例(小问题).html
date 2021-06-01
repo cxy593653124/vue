@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+  <div id="app">
+    <span v-if="isUser">
+      <label for="username">用户账号</label>
+      <input type="text" id="username" placeholder="用户账号" key="abc">
+    </span>
+
+    <span v-else>
+      <label for="email">用户邮箱</label>
+      <input type="text" id="email" placeholder="用户邮箱" key="zzz">
+    </span>
+
+    <button @click="isUser = !isUser">切换类型</button>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      isUser:true
+    },
+    methods:{
+
+    }
+  })
+    //两个input切换时，第二个输入框会优先复用第一个输入框的内容，而不是重新生成dom
+
+    // 原理  程序里的真实dom先通过虚拟dom映射到网页中，切换时，
+    // 虚拟dom会继续使用之前的dom元素，但是会进行对比，将dom中需要改变的属性改变
+    // 解决方法   给每个input加个key属性，切换时，如果key不一致时，就不会进行复用
+  </script>
+
+</body>
+</html>

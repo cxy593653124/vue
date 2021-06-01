@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active{
+      color:red
+    }
+  </style>
+</head>
+<body>
+
+
+
+<div id="app">
+  <h2 :class="{active:isActive,line:false}">{{message}}</h2>
+  <h2 :class="getclass()">{{message}}</h2>
+  <button @click="btnclick">按钮</button>
+</div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'你好啊',
+                active:'active',
+                isActive:true,
+                isLine:false
+            },
+            methods:{
+                btnclick:function(){
+                    this.isActive = !this.isActive
+                },
+                getclass:function () {
+                    return {active:this.isActive,line:this.false}
+                }
+            }
+        })
+      //v-bind  控制一些class的显隐   后面跟着一个对象{}      v-bind:class和单独的class同在
+
+
+      // {a:b}  a为自定义的class名，b为自定义class的自定义值
+      // {a:'b'}  a为自定义的class名，b为值
+ </script>
+
+</body>
+</html>

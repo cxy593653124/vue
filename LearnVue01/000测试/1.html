@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+  <div id ="app" v-cloak>
+    <div v-if="name">
+      <span>姓名：{{name}}</span><br>
+      <span>年龄：{{age}}</span><br>
+      <span>身高：{{height}}</span><br>
+    </div>
+    <div v-else>
+      <h2>暂无信息</h2>
+    </div>
+    <cpn @pclick="receive"></cpn>
+
+  </div>
+
+  <template id="cpn" v-cloak>
+    <div>
+      <form action="">
+        <input type="text" placeholder="请输入姓名" v-model="ainfo.cname">
+        <input type="text" placeholder="" v-model.number="ainfo.cage">
+        <input type="text" placeholder="" v-model="ainfo.cheight">
+        <button @click.prevent="send">提交</button>
+      </form>
+    </div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+
+  const cpn = {//定义子组件时，写法略有不同
+    template:'#cpn',
+    data:function(){
+      return {
+        ainfo:{
+          cname:"",
+          cage:"",
+          cheight:""
+        }
+      }
+    },
+    
+    methods:{
+      send:function(){
+        this.$emit('pclick',this.ainfo)
+      },
+      getinfos(){
+
+        // $.ajax({
+        //   ...
+        // })
+
+        this.ainfo.cname = "张三"
+        this.ainfo.cage = "20"
+        this.ainfo.cheight = "1.88"
+      }
+    },
+    created(){//页面渲染前的生命周期函数，在此调用方法获取数据
+      this.getinfos()
+    },
+  }
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      name:"",
+      age:"",
+      height:"",
+    },
+    components:{
+      cpn
+    },
+    methods:{
+      receive(item){
+        this.name = item.cname
+        this.age = item.cage+"岁"
+        this.height = item.cheight+"米"
+      }
+    }
+  });
+  </script>
+</body>
+
+</html>

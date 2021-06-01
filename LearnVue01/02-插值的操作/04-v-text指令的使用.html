@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+  {{message}}
+  <h2 v-text="message"></h2>
+</div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'你好啊'
+            }
+        })
+      //v-text直接展示内容，不论格式，与v-html不同，v-html会将内容中的标签转化
+ </script>
+
+</body>
+</html>

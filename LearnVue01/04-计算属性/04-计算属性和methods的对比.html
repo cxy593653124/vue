@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>{{firstName}}  {{lastName}}</h2><!-- 1 -->
+  <h2>{{getfullName()}}</h2><h2>{{getfullName()}}</h2><h2>{{getfullName()}}</h2><!-- 2 -->
+  <h2>{{fullName}}</h2><h2>{{fullName}}</h2><h2>{{fullName}}</h2><!-- 3 -->
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      firstName:'Kobe',
+      lastName:'Bryant'
+    },
+    methods:{
+      getfullName:function () {
+        console.log("getfullName")
+        return this.firstName + '  '+ this.lastName
+      }
+    },
+    computed:{
+      // fullName:function () {
+      //  return this.firstName + '   '+ this.lastName
+      // }
+      //上方为下方简写
+      //一般没有set方法，只读属性
+      fullName:{
+        set:function (newValue) {
+          //fullName被修改时会调用里面的方法,修改值为newValue
+          console.log('1231',newValue)
+          const names = newValue.split('  ');
+          this.firstName = names[0];
+          this.lastName = names[1];
+        },
+        get:function () {
+          console.log('get')
+          return this.firstName + '   '+ this.lastName
+        }
+      }
+
+
+    }
+  })
+  //1、直接拼接，语法过于繁琐
+  //2、定义methods，多次调用，多次执行，
+  //3、通过computed，多次调用，单次执行，
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+  <div id="app">
+    {{message}}
+    <h2 v-once>{{message}}</h2>
+  </div>
+
+      <script src="../js/vue.js"></script>
+      <script>
+          const app = new Vue({
+              el:'#app',
+              data:{
+                  message:'你好啊'
+              }
+          })
+
+
+
+        //v-once   只展示第一次数据，数据修改后不修改显示,只渲染一次页面
+   </script>
+
+</body>
+</html>

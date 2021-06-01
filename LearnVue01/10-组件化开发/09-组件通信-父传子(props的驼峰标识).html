@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+  <cpn :cinfo="info" :child-my-message="message"></cpn>
+</div>
+
+
+<template id="cpn">
+  <div>
+    <h2>{{cinfo}}</h2>
+    <h2>{{childMyMessage}}</h2>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const cpn = {
+    template:'#cpn',
+    props:{
+      cinfo:{
+        type:Object,
+        default:function(){
+          return {}
+        }
+      },
+      childMyMessage:{
+        type:String,
+        default:''
+      }
+    }
+  }
+
+const app = new Vue({
+  el:'#app',
+  data:{
+    info:{
+      name:'yuan',
+      age:18,
+      height:1.88
+    },
+    message:'哈哈哈'
+  },
+  components:{
+    cpn
+  }
+})
+  //v-bind:后的变量不能有驼峰
+  //v-bind:cInfo需要写为v-bind:c-info
+  //所以子组件定义变量最好不要有驼峰
+</script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+  <div id="app" v-cloak>
+    {{message}}
+  </div>
+
+      <script src="../js/vue.js"></script>
+      <script>
+          const app = new Vue({
+              el:'#app',
+              data:{
+                  message:'你好啊'
+              }
+          })
+        //v-cloak   斗篷，在数据渲染前遮挡原数据，vue解析后会自动删除v-cloak
+   </script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+  <div id="app">
+    模板语法(各种指令、Mustache)
+    <div v-bind:class="clas">666</div>
+    <button v-on:click="say(678)">按钮</button>
+
+    <p></p>计算属性和观察者
+    <div>
+      <input type="text" v-model="ipt">
+    </div>
+
+    <div>{{toUp}}</div>
+    <input type="text" v-model="ipt2">
+
+    <p></p>自定义指令
+    <div v-color="'green'">用于测试</div>
+
+    <p></p>自定义组件[简单]
+    <div>
+      <simple></simple>
+    </div>
+
+    <p></p>自定义组件[复杂]
+    <div>
+      <do-list v-bind:data="list"></do-list>
+    </div>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    // 注册一个全局自定义【指令】 v-color
+    Vue.directive("color", function(el,binding){  /* el就是页面的dom */
+        console.log(binding)
+        el.style.color = binding.value;
+    })
+
+    // 注册一个全局自定义组件 v-color
+    Vue.component("simple",Vue.extend({
+        template: '<div>A custom component!</div>'
+    }))
+
+    // 注册一个复杂全局自定义【组件】 v-color
+    Vue.component("do-list",Vue.extend({
+        //(父子传参)子组件要显式地用 props 选项声明它预期的数据：
+        props: ['data'],
+        template: `
+            <ul>
+                <li v-for="item in data">{{item.name}}</li>
+            </ul>
+        `
+    }))
+
+
+    //一个vue的实例
+    new Vue({
+        el: '#app',
+
+
+        //model
+        data: {
+          msg: 'Hello!',
+          clas:'active',
+          ipt:'dsh',
+          ipt2:'wx',
+          list:[
+            {name:'小明',age:20},
+            {name:'小红',age:16}
+          ]
+        },
+
+        //计算属性
+        computed:{
+          toUp:function() {
+              var that=this;
+              var temp=that.ipt.toUpperCase();
+              return temp;
+          }
+        },
+
+        //函数
+        methods:{
+          say:function(i) {
+            alert(i)
+          }
+        },
+
+        //观察者
+        watch:{
+          // 如果 `ipt2` 发生改变，这个函数就会运行
+          ipt2:function (newVal) {
+            this.say(newVal)
+            //console.log(this.ipt2);
+          }
+        }
+
+        //至于路由，我暂时先用官方支持的 vue-router 库，而不用基础的自带路由
+    })
+
+
+    </script>
+</body>
+
+</html>

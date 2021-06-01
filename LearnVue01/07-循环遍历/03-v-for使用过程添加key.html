@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+     <ul>
+       <li v-for="item in letters" :key="item">{{item}}</li>
+     </ul>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        letters:['A','B','C','D','E']
+      }
+    })
+
+    // 如果需要在数组中添加另一个元素，虚拟dom的操作是会在所需添加位置
+    // 将原来的元素替换成所要改的元素，原位置后面的元素自动向后修改
+    // 个人理解：如果数组之后有添加的操作时，会加大页面负载，需解决该问题
+
+    // 如果dom绑定key值（不能用index,应该用item,因为index会改变），作为唯一标识符，插入时，就会在正确的位置插入新的元素
+    // 能够高效的更新虚拟DOM
+    </script>
+</body>
+</html>

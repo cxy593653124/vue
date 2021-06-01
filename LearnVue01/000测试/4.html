@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+  <div id ="app">
+    <h2>假设div的显隐为弹窗，实现弹窗内部输入数据后，外部能获取到输入的数据，即弹窗保存数据</h2>
+    <button @click="btn1">采集信息</button>
+    <div v-if="seen">
+      <h2>姓名：{{info.name}}</h2>
+      <h2>年龄：{{info.age}}</h2>
+      <h2>身高：{{info.height}}</h2>
+    </div>
+    <div v-else>
+      <cpn @sendinfo="getinfos"></cpn>
+    </div>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <form action="">
+        <input type="text" name="name" v-model="cinfo.cname"><br>
+        <input type="number" name="age" v-model.number="cinfo.cage" ><br>
+        <input type="number" name="height" v-model.number="cinfo.cheight"><br>
+        <button @click.prevent="up">提交</button>
+      </form>
+    </div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+
+  const cpn = {
+    template:'#cpn',
+    data(){
+      return {
+        cinfo:{
+          cname:"",
+          cage:"",
+          cheight:""
+        }
+      }
+    },
+    methods:{
+      up(){
+        if(this.check(this.cinfo)){
+          this.$emit("sendinfo",this.cinfo)
+        }else{
+          alert("请填写信息后重试！")
+        }
+      },
+      check(form){//判断对象或数组中每一项是否都有值
+        let flag = true;
+        for(let key in form){
+          if(!form[key]){
+            flag = false
+          }
+        }
+        return flag
+      }
+    }
+  }
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+      seen:true,
+      info:{
+        name:"",
+        age:0,
+        height:0
+      }
+    },
+    components:{
+      cpn
+    },
+    methods:{
+      btn1(){
+        this.seen = !this.seen
+      },
+      getinfos(item){
+        this.seen = !this.seen
+        this.info.name = item.cname
+        this.info.age = item.cage
+        this.info.height = item.cheight
+      }
+    }
+  });
+  </script>
+</body>
+
+</html>

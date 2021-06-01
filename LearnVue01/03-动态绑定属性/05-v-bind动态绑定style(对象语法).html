@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+      <h2 :style="{fontSize:finalSize+'px',backgroundColor:finalColor}">{{message}}</h2>
+      <h2 :style="getstyle()">{{message}}</h2>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:'你好啊',
+        finalSize:100,
+        finalColor:'red'
+      },
+        methods:{
+          getstyle:function () {
+            return {fontSize:this.finalSize+'px',backgroundColor:this.finalColor}
+          }
+        }
+    })
+    // v-bind:style={}对象语法时，前面参数不加引号，后面参数不加引号为变量,加引号为常量
+    // {a:b}  a为自定义的class名，b为自定义class的自定义值
+    // {a:'b'}  a为自定义的class名，b为值
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+  <div id ="app">
+    <cpn>
+      <button slot="{{leftname}}">返回</button>
+      <button slot="right">...</button>
+    </cpn>
+    
+  </div>
+
+  <template id="cpn">
+    <div>
+
+      <slot name="left">左</slot>
+      <slot name="center">中</slot>
+      <slot name="right">右</slot>
+
+    </div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message:"你好啊",
+      leftname:'left'
+    },
+    components:{
+      cpn:{
+        template:'#cpn'
+      }
+    }
+  });
+  //插槽的基本使用：<slot></slot>
+  //默认值：<slot><span>123</span></slot>
+  //多个标签作为替换
+  </script>
+  
+</body>
+
+</html>

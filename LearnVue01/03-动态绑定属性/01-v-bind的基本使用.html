@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+
+<div id="app">
+  <img :src="imgUrl" alt="">
+  <a :href="hrefUrl">{{text}}</a>
+</div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                imgUrl:'https://imagepphcloud.thepaper.cn/pph/image/125/545/605.jpg',
+                hrefUrl:'http://www.baidu.com',
+                text:'百度一下'
+            }
+        })
+      //v-bind   可动态绑定标签的属性    v-bind:src   语法糖简写为  :src
+ </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+  <div id="app">
+    <!--  .stop修饰符的使用 -->
+    <div @click="divClick">
+      aaaaa
+      <button @click.stop ="btnClick" >按钮</button>
+    </div>
+
+    <!--  v-prevent  -->
+    <br>
+    <form action="baidu">
+      <input type="submit" value="提交" @click.prevent="submitClick">
+    </form>
+
+    <br>
+    <!--   监听某个键帽的点击 -->
+    <input type="text" @keyup.enter="keyup">
+
+
+    <!--   监听原组件的点击 -->
+    <dpn @click.native></dpn>
+
+    <!--   .once   只触发一次 -->
+    <br>
+    <button @click.once="btn2Click">按钮2</button>
+
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好啊'
+    },
+    methods:{
+      btnClick:function(){
+        console.log('btnClick')
+      },
+      divClick:function(){
+        console.log('divClick');
+      },
+      submitClick:function(){
+        console.log('提交')
+      },
+      keyup:function(){
+        console.log('keyup')
+      },
+      btn2Click:function () {
+        console.log('btn2Click')
+      }
+    }
+  })
+  </script>
+
+</body>
+</html>

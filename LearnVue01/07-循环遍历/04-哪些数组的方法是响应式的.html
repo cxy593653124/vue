@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <ul>
+    <li v-for="item in letters" :key="item">{{item}}</li>
+  </ul>
+  <button @click="btnClick">按钮</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+const app = new Vue({
+  el:'#app',
+  data:{
+    letters:['A','B','C','D']
+  },
+  methods:{
+    btnClick:function () {
+      //1.push方法
+      this.letters.push('aaa','bbb','ccc')
+      //push(),pop(),shift(),unshift(),sort(),reverse()翻转,splice()都能做到响应式
+
+      //2.通过索引值修改数组中的元素，不能做到响应式
+      // this.letters[0]='bbb'
+
+      //vue.set(要修改的对象，索引值，修改后的值)
+      vue.set(this.letters,0,'bbbbb')
+    }
+  }
+})
+// 个人理解：如果要对数组进行添加时，最好使用JS中数组的操作方法，不要直接进行赋值
+</script>
+
+</body>
+</html>

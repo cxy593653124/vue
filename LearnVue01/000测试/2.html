@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+  <div id ="app">
+    {{gettotal1}}
+  </div>
+
+
+
+  <script src="../js/vue.js"></script>
+  <script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      firstnum:0
+    },
+    created(){//created中的两个方法不限先后（都是在页面渲染前获取数据并赋值给data中的变量，不论先后都能在页面渲染前赋值完成，所以不论先后）
+      this.gettotal()
+      this.getdatas()
+    },
+    methods:{
+      getdatas(aaa){
+        // $.ajax({
+        //   ...
+        // })
+        return this.firstnum = 10
+      },
+      gettotal(){
+        return 10*this.firstnum;
+      }
+    },
+    computed:{
+      gettotal1(){
+        return 10*this.firstnum;
+      }
+    }
+  });
+  </script>
+</body>
+
+</html>

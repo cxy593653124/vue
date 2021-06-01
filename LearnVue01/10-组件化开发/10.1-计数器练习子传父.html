@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+
+  <!-- 父组件模板 -->
+  <div id="app">
+    <cpn @cpnde="decrement" @cpnin="increment"> </cpn>
+    <h2>当前数字为：{{total}}</h2>
+  </div>
+
+  <!-- 子组件模板 -->
+  <template id="cpn">
+    <div>
+      <button @click="cpndecrement">-1</button>
+      <button @click="cpnincrement">+1</button>
+    </div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    // 子组件定义
+    const cpn = {
+      template: '#cpn',//子组件元素
+      methods: {//子组件方法
+        cpndecrement: function () {
+          this.$emit('cpnde')//发射自定义事件cpnde
+        },
+        cpnincrement: function () {
+          this.$emit('cpnin')//发射自定义事件cpnin
+        }
+      }
+    }
+
+    // 父组件定义
+    const app = new Vue({
+      el: '#app',
+      data: {//数据
+        total: 0
+      },
+      components: {//绑定子组件
+        cpn
+      },
+      methods: {
+        decrement: function () {
+          this.total--
+        },
+        increment: function () {
+          this.total++
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>
