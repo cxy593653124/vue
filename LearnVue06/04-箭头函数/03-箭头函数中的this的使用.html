@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  // 什么时候用箭头函数
+  // setTimeout(function(){
+  //   console.log(this)//window
+  // },1000)
+
+  // setTimeout(() => {
+  //   console.log(this)//window
+  // },1000)
+
+  // 问题：箭头函数的this如何查找
+  // 答案：向外层作用域中一层层查找this，直到有this的定义
+  // const obj = {
+  //   aaa(){
+  //       setTimeout(function(){
+  //         console.log(this)//window
+  //       },1000)
+
+  //       setTimeout(() => {
+  //         console.log(this)//obj
+  //       },1000)
+  //   }
+  // }
+
+  const obj = {
+    aaa(){
+        setTimeout(function(){
+          setTimeout(function(){
+            console.log(this)//window
+          })
+
+          setTimeout(() => {
+            console.log(this)//window
+          })
+        })
+
+        setTimeout(() => {
+          setTimeout(function(){
+            console.log(this)//window
+          })
+
+          setTimeout(() => {
+            console.log(this)//obj
+          })
+        })
+    }
+  }
+
+</script>
